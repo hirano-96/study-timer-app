@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="./style.css">
+    <!-- <link rel="stylesheet" href="https://unpkg.com/spectre.css/dist/spectre.min.css">
+    <link rel="stylesheet" href="https://unpkg.com/spectre.css/dist/spectre-exp.min.css">
+    <link rel="stylesheet" href="https://unpkg.com/spectre.css/dist/spectre-icons.min.css"> -->
+    <title>Study Timer App</title>
+</head>
+
+<body>
+    <div class="app">
+        <header>
+            <img alt="Study-Timer logo" class="logo" src="./image/study-timer.png" width="60" height="60" />
+            <div class="wrapper">
+                <h1>Study Timer App</h1>
+            </div>
+        </header>
+
+        <body>
+            <div class="time-select">
+                <div class="study-time-select">
+                    <p>Select Study Time</p>
+                    <button data-time="1500">25 Minutes</button>
+                    <button data-time="3000">50 Minutes</button>
+                    <button data-time="3600">60 Minutes</button>
+                </div>
+                <div class="rest-time-select">
+                    <p>Select Rest Time</p>
+                    <button data-time="300">5 Minutes</button>
+                    <button data-time="600">10 Minutes</button>
+                    <button data-time="900">15 Minutes</button>
+                </div>
+
+            </div>
+            <div class="player-container">
+                <audio class="song">
+                    <source src="./sounds/さわやかな朝.mp3" />
+                </audio>
+                <img src="./svg/play.svg" alt="play" class="play">
+                <svg class="track-outline" width="453" height="453" viewBox="0 0 453 453" fill="none"
+                    xmlns="http://www.w3.org/2000/svg">
+                    <circle cx="226.5" cy="226.5" r="216.5" stroke="#d9d6c1" stroke-width="20" />
+                </svg>
+                <svg class="moving-outline" width="453" height="453" viewBox="0 0 453 453" fill="none"
+                    xmlns="http://www.w3.org/2000/svg">
+                    <circle cx="226.5" cy="226.5" r="216.5" stroke="#4138C2" stroke-width="20" />
+                </svg>
+                <div class="timer">
+                    <svg class="timer" lass="mobing-online" version="1.1" id="_x32_" xmlns="http://www.w3.org/2000/svg"
+                        xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 512 512"
+                        style="width: 100px; height: 100px; opacity: 1;" xml:space="preserve">
+                        <style type="text/css">
+                            .st0 {
+                                fill: #4B4B4B;
+                            }
+                        </style>
+                        <g>
+                            <path class="st0"
+                                d="M149.25,367.566c0,30.471,0,53.324,0,53.324h106.748h106.75c0,0,0-22.854,0-53.324
+                            c0-60.945-85.131-86.781-85.131-107.35v-11.543c0-20.568,85.131-46.404,85.131-107.348c0-30.472,0-53.326,0-53.326h-106.75H149.25
+                            c0,0,0,22.854,0,53.326c0,60.944,85.131,86.78,85.131,107.348v11.543C234.381,280.785,149.25,306.621,149.25,367.566z"
+                                style="fill: rgb(217, 214, 193);"></path>
+                            <rect x="121.773" class="st0" width="268.453" height="48" style="fill: rgb(217, 214, 193);">
+                            </rect>
+                            <rect x="121.773" y="456" class="st0" width="268.453" height="56"
+                                style="fill: rgb(217, 214, 193);"></rect>
+                        </g>
+                    </svg>
+                </div>
+                <h3 class="time-display">0:00</h3>
+            </div>
+            <div class="sound-picker">
+                <!-- <div class="patern-select">
+                    <p>Select Patern</p>
+                    <button data-time="300">Study Only</button>
+                    <button data-time="600">Rest Only</button>
+                    <button data-time="900">Study-Rest-Study</button>
+                </div> -->
+                <!-- <div class="sounds"> -->
+                <button data-sound="./sounds/さわやかな朝.mp3" data-video="./image/mountains-g374659856_1280.jpg">
+                    <img src="./svg/morning.svg" alt="morning" />
+                </button>
+                <button data-sound="./sounds/The_whirligig_of_time_2.mp3"
+                    data-video="./image/ocean-g1879b4d1b_1280.jpg">
+                    <img src="./svg/night.svg" alt="night" />
+                </button>
+                <!-- </div> -->
+            </div>
+
+        </body>
+        <script src="./app.js"></script>
+</body>
+
+</html>

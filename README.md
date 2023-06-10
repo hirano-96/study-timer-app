@@ -1,2 +1,4 @@
 # study-timer-app
-勉強用アプリ
+meditation-appを参考に、勉強用アプリを作成する
+
+
