@@ -1,11 +1,13 @@
 @import './base.css';
 
+/* 全体 */
 *{
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
 
+/* アプリ部分全体 */
 .app{
     height: 100vh;
     display: flex;
@@ -17,6 +19,7 @@
     font-weight: normal;
 }
 
+/* ヘッダー周り */
 header {
     position: absolute;
     width: 600px;
@@ -30,21 +33,22 @@ header {
     align-items: center;
 }
 
+.logo {
+    display: block;
+    margin: 0 0.5em 0 0;
+    border-radius: 5px;
+}
+
+/* pタグ全体 */
 p{
     font-size: 20px;
     margin-bottom: 3%;
 }
 
-.logo {
-    display: block;
-    /* 文字との間のみ隙間をもうける */
-    margin: 0 0.5em 0 0;
-    border-radius: 5px;
-}
-
+/* ブロックごとの設定 */
 .time-select,
-.sound-picker,
-.player-container{
+.player-container,
+.setting-select{
     height: 80%;
     flex: 1;
     display: flex;
@@ -53,6 +57,13 @@ p{
     align-items: center;
 }
 
+.sound-picker,
+.patern-select{
+    width: 70%;
+    height: 30%;
+}
+
+/* player-container内の設定 */
 .player-container{
     position: relative;
 }
@@ -61,10 +72,8 @@ p{
     height: 10%;
     top: 70%;
     left: 45%;
-
     cursor: pointer;
 }
-
 .player-container svg{
     position: absolute;
     height: 50%;
@@ -73,7 +82,6 @@ p{
     transform: translate(-50%, -50%) rotate(-90deg);
     pointer-events: none;
 }
-
 .timer{
     position: absolute;
     height: 50%;
@@ -82,16 +90,17 @@ p{
     transform: translate(-50%, -50%) rotate(-90deg);
     pointer-events: none;
 }
-
 .time-display{
     position: absolute;
     bottom: 0%;
     font-size: 70px;
 }
 
-
+/* ボタン関連の設定 */
+/* 四角ボタン */
 .study-time-select button,
 .rest-time-select button,
+.patern-select button,
 .sounds button{
     color: var(--color-text);
     width: 100%;
@@ -104,58 +113,55 @@ p{
     font-size: 20px;
     transition: all 0.5s ease;
     justify-content: space-evenly;
-}
-
-.study-time-select button,
-.rest-time-select button{
     margin-bottom: 5%;
 }
 
-.study-time-select button:hover,
-.rest-time-select button:hover{
-    color: var(--color-text);
-    background: #2e269d;
-}
-
-
+/* 丸ボタン */
 .sound-picker button{
-    border: 1px solid;
-    height: 120px;
-    width: 120px;
-    border-radius: 50%;
-    padding: 30px;
-    align-items: center;
-    justify-content: space-evenly;
-    margin-top: 20%;
-    flex-direction: row;
-
-    cursor: pointer;
-}
-
-.patern-select button{
     color: var(--color-text);
-    width: 80%;
-    height: 30%;
-    box-shadow: none;
-    background: #4138C2;
     border: 1px solid;
-    cursor: pointer;
-    border-radius: 5px;
-    font-size: 20px;
-    transition: all 0.5s ease;
+    height: 100px;
+    width: 100px;
+    border-radius: 50%;
+    border: 1px solid;
+    padding: 30px; 
     justify-content: space-evenly;
-
-    margin-bottom: 5%;
+    cursor: pointer;
+    margin-left: 30px;
+    margin-top: 10%;
 }
-
+/* 丸ボタンは要素ごとに色を分けたいので色の設定だけ切り分け */
 .sound-picker button:nth-child(1){
     background: #c83232;
 }
 .sound-picker button:nth-child(2){
     background: #4138C2;
-
 }
 
+/* 丸ボタン内の画像 */
 .sound-picker button img{
     height: 100%;
 }
+
+/* 青ボタンホバー */
+.study-time-select button:hover,
+.rest-time-select button:hover,
+.patern-select button:hover,
+.sound-picker button:nth-child(2):hover{
+    color: var(--color-text);
+    background: #2e269d;
+}
+
+/* 赤ボタンホバー */
+.sound-picker button:nth-child(1):hover{
+    color: var(--color-text);
+    background: #9b2626;
+}
+
+
+
+
+
+
+
+
