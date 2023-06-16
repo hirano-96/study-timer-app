@@ -36,9 +36,17 @@ const app = () => {
         });
     })
 
+    if(timeDisplay.textContent == "0:00"){
+        play.setAttribute('disabled', true)
+        play.setAttribute('style', 'cursor:default;')
+    }
+
     // 再生ボタン押下時に、mp3ファイルを参照して実行
     play.addEventListener("click", () => {
-        checkPlaying(song);
+        if(timeDisplay.textContent == "0:00"){
+        }else{
+            checkPlaying(song);
+        }
     });
 
     // パターン選択
@@ -63,6 +71,8 @@ const app = () => {
                         minutes = Math.floor(fakeDuration / 60).toString().padStart( 2, '0')
                         seconds = Math.floor(fakeDuration % 60).toString().padStart( 2, '0')
                         timeDisplay.textContent = minutes + ':' + seconds
+                        play.removeAttribute('disabled')
+                        play.removeAttribute('style')
                     })
                 })
             }
@@ -84,8 +94,11 @@ const app = () => {
                         minutes = Math.floor(fakeDuration / 60).toString().padStart( 2, '0')
                         seconds = Math.floor(fakeDuration % 60).toString().padStart( 2, '0')
                         timeDisplay.textContent = minutes + ':' + seconds
+                        play.removeAttribute('disabled')
+                        play.removeAttribute('style')
                     })
                 })
+
             }
 
             if(fakePatern == 'both'){
@@ -107,6 +120,8 @@ const app = () => {
                         minutes = Math.floor(fakeDuration / 60).toString().padStart( 2, '0')
                         seconds = Math.floor(fakeDuration % 60).toString().padStart( 2, '0')
                         timeDisplay.textContent = minutes + ':' + seconds
+                        play.removeAttribute('disabled')
+                        play.removeAttribute('style')
                     })
                 })
 
@@ -118,11 +133,15 @@ const app = () => {
                         minutes = Math.floor(fakeDuration / 60).toString().padStart( 2, '0')
                         seconds = Math.floor(fakeDuration % 60).toString().padStart( 2, '0')
                         timeDisplay.textContent = minutes + ':' + seconds
+                        play.removeAttribute('disabled')
+                        play.removeAttribute('style')
                     })
                 })
             }
         })
+
     })
+
 
     // Create a function specific to stop and play the sounds
     const checkPlaying = song => {
