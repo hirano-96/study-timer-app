@@ -72,7 +72,6 @@ p{
     height: 10%;
     top: 70%;
     left: 45%;
-    cursor: pointer;
 }
 .player-container svg{
     position: absolute;

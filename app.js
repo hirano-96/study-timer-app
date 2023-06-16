@@ -17,11 +17,19 @@ const app = () => {
     // Get the Length of the outline
     const outlineLength = outline.getTotalLength();
 
+    const init = () => {
+        if(timeDisplay.textContent == "0:00"){
+        alarm.paused();
+        alarm.currentTime = 0;
+        play.setAttribute('disabled', true)
+        }
+    }
+
     //Duration
     let fakeDuration = 0;
     let studyTime = 0;
     let restTime = 0;
-    let fakePatern = 'study'
+    let fakePatern = 'study';
 
 
 
@@ -31,15 +39,13 @@ const app = () => {
     // 曲選択のボタン押下時に、HTML記載の参照mp3を変更
     sounds.forEach(sound => {
         sound.addEventListener('click', function(){
+            alarm.paused();
+            alarm.currentTime = 0;
             song.src = this.getAttribute('data-sound');
-            checkPlaying(song);
         });
     })
 
-    if(timeDisplay.textContent == "0:00"){
-        play.setAttribute('disabled', true)
-        play.setAttribute('style', 'cursor:default;')
-    }
+
 
     // 再生ボタン押下時に、mp3ファイルを参照して実行
     play.addEventListener("click", () => {
@@ -72,7 +78,7 @@ const app = () => {
                         seconds = Math.floor(fakeDuration % 60).toString().padStart( 2, '0')
                         timeDisplay.textContent = minutes + ':' + seconds
                         play.removeAttribute('disabled')
-                        play.removeAttribute('style')
+                        play.setAttribute('style', 'cursor:pointer')
                     })
                 })
             }
@@ -184,7 +190,7 @@ const app = () => {
             alarm.play();
             if(alarm.currentTime == 3){
                 alarm.pause();
-                alarm.curentTime = 0;
+                alarm.currentTime = 0;
             }
             play.src = './svg/play.svg';
         }
