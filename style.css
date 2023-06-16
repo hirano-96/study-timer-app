@@ -22,7 +22,7 @@
 /* ヘッダー周り */
 header {
     position: absolute;
-    width: 600px;
+    width: 1000px;
     height: 150px;
     left: 100px;
     top: 0px;
@@ -102,7 +102,7 @@ p{
 .rest-time-select button,
 .patern-select button,
 .sounds button{
-    color: var(--color-text);
+    color: rgb(217, 214, 193);
     width: 100%;
     height: 30%;
     box-shadow: none;
@@ -158,8 +158,20 @@ p{
     background: #9b2626;
 }
 
-
-
+.caption{
+    position: absolute;
+    width: 750px;
+    height: 150px;
+    left: 500px;
+    top: 0px;
+    margin-top: 60px;
+    font-weight: 400;
+    font-size: 12px;
+    line-height: normal;
+    align-items: center;
+    flex-wrap: wrap;
+    overflow-wrap: normal;
+}
 
 
 

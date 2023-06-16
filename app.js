@@ -46,52 +46,78 @@ const app = () => {
         option.addEventListener('click', function () {
             fakePatern = this.getAttribute('data');
             if(fakePatern == 'study' ){
+                // 勉強時間選択可能、休憩時間選択非活性
                 studyTimeSelect.forEach(option => {
                     option.removeAttribute('disabled')
+                    option.removeAttribute('style')
                 })
                 restTimeSelect.forEach(option => {
                     option.setAttribute('disabled', true)
+                    option.setAttribute('style', 'background-color:rgba(213, 210, 210, 0.64); cursor:default;')
                 })
+
+                // 勉強時間選択時の処理
                 studyTimeSelect.forEach(option => {
                     option.addEventListener('click', function () {
                         fakeDuration = this.getAttribute('data-time');
-                        timeDisplay.textContent = `${Math.floor(fakeDuration / 60)}:${Math.floor(fakeDuration % 60)}`
+                        minutes = Math.floor(fakeDuration / 60).toString().padStart( 2, '0')
+                        seconds = Math.floor(fakeDuration % 60).toString().padStart( 2, '0')
+                        timeDisplay.textContent = minutes + ':' + seconds
                     })
                 })
             }
             if(fakePatern == 'rest' ){
+                // 勉強時間選択非活性、休憩時間選択可能
                 studyTimeSelect.forEach(option => {
                     option.setAttribute('disabled', true)
+                    option.setAttribute('style', 'background-color:rgba(213, 210, 210, 0.64); cursor:default;')
                 })
                 restTimeSelect.forEach(option => {
                     option.removeAttribute('disabled')
+                    option.removeAttribute('style')
                 })
+
+                // 休憩時間選択時の処理
                 restTimeSelect.forEach(option => {
                     option.addEventListener('click', function () {
                         fakeDuration = this.getAttribute('data-time');
-                        timeDisplay.textContent = `${Math.floor(fakeDuration / 60)}:${Math.floor(fakeDuration % 60)}`
+                        minutes = Math.floor(fakeDuration / 60).toString().padStart( 2, '0')
+                        seconds = Math.floor(fakeDuration % 60).toString().padStart( 2, '0')
+                        timeDisplay.textContent = minutes + ':' + seconds
                     })
                 })
             }
+
             if(fakePatern == 'both'){
+                // 勉強時間選択可能、休憩時間選択可能
                 studyTimeSelect.forEach(option => {
                     option.removeAttribute('disabled')
+                    option.removeAttribute('style')
                 })
                 restTimeSelect.forEach(option => {
                     option.removeAttribute('disabled')
+                    option.removeAttribute('style')
                 })
+
+                // 勉強時間選択時の処理
                 studyTimeSelect.forEach(option => {
                     option.addEventListener('click', function () {
                         studyTime = Math.floor(this.getAttribute('data-time'));
                         fakeDuration = studyTime;
-                        timeDisplay.textContent = `${Math.floor(fakeDuration / 60)}:${Math.floor(fakeDuration % 60)}`
+                        minutes = Math.floor(fakeDuration / 60).toString().padStart( 2, '0')
+                        seconds = Math.floor(fakeDuration % 60).toString().padStart( 2, '0')
+                        timeDisplay.textContent = minutes + ':' + seconds
                     })
                 })
+
+                // 休憩時間を勉強時間に足す
                 restTimeSelect.forEach(option => {
                     option.addEventListener('click', function () {
                         restTime = Math.floor(this.getAttribute('data-time'));
                         fakeDuration = studyTime + restTime;
-                        timeDisplay.textContent = `${Math.floor(fakeDuration / 60)}:${Math.floor(fakeDuration % 60)}`
+                        minutes = Math.floor(fakeDuration / 60).toString().padStart( 2, '0')
+                        seconds = Math.floor(fakeDuration % 60).toString().padStart( 2, '0')
+                        timeDisplay.textContent = minutes + ':' + seconds
                     })
                 })
             }
@@ -113,14 +139,14 @@ const app = () => {
     song.ontimeupdate = () => {
         let currentTime = song.currentTime;
         let elapsed = fakeDuration - currentTime;
-        let seconds = Math.floor(elapsed % 60);
-        let minutes = Math.floor(elapsed / 60);
+        let minutes = Math.floor(fakeDuration / 60).toString().padStart( 2, '0');
+        let seconds = Math.floor(fakeDuration % 60).toString().padStart( 2, '0');
 
         // Animate the circle
         let progress = outlineLength - (currentTime / fakeDuration) * outlineLength;
         outline.style.strokeDashoffset = progress;
-        
-        timeDisplay.textContent = `${minutes}:${seconds}`;
+
+        timeDisplay.textContent = minutes + ':' + seconds;
 
         if(fakePatern == 'both'){
             if(currentTime >= studyTime){
@@ -133,17 +159,15 @@ const app = () => {
             }
 
         }
-        if(currentTime >= fakeDuration - 3){
-            song.muted = true;
+        if(currentTime >= fakeDuration){
+            song.pause();
+            song.currentTime = 0;
             alarm.play();
-            if(currentTime >= fakeDuration){
-                song.muted = false
-                song.pause();
-                song.currentTime = 0;
+            if(alarm.currentTime == 3){
                 alarm.pause();
-                alarm.currentTime = 0;
-                play.src = './svg/play.svg';
+                alarm.curentTime = 0;
             }
+            play.src = './svg/play.svg';
         }
 
     }
